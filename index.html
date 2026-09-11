@@ -11,8 +11,8 @@
     
     /* Header */
     .header { background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white; padding: 20px 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(27,94,32,0.3); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .header h1 { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-    .header h1 small { font-size: 13px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
+    .header-info h1 { font-size: 20px; font-weight: 700; }
+    .header-info .sub { font-size: 13px; font-weight: 400; opacity: 0.9; margin-top: 4px; }
     .status-badge { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
     .status-badge.active { background: #4caf50; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
@@ -21,13 +21,8 @@
     .card { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-left: 4px solid #2e7d32; }
     .card-title { font-size: 16px; font-weight: 600; color: #1b5e20; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     
-    /* Filter */
-    .filter-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
-    .filter-row select { flex: 1; min-width: 150px; padding: 10px 14px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 14px; background: #fafffa; font-family: inherit; }
-    .filter-row select:focus { outline: none; border-color: #2e7d32; }
-    .filter-row .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.3s; }
-    
     /* Buttons */
+    .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.3s; }
     .btn-primary { background: #2e7d32; color: white; }
     .btn-primary:hover { background: #1b5e20; }
     .btn-outline { background: transparent; border: 2px solid #2e7d32; color: #2e7d32; }
@@ -78,31 +73,33 @@
     .info-bar .countdown { color: #2e7d32; font-weight: 600; }
     
     /* Login */
-    #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+    #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
     #loginOverlay.hidden { display: none; }
-    .login-box { background: white; padding: 40px; border-radius: 16px; max-width: 380px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
-    .login-box .icon { font-size: 48px; margin-bottom: 10px; }
-    .login-box h2 { color: #1b5e20; margin-bottom: 6px; }
-    .login-box p { color: #888; font-size: 14px; margin-bottom: 20px; }
-    .login-box input { width: 100%; padding: 12px 16px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 12px; font-family: inherit; }
-    .login-box input:focus { outline: none; border-color: #2e7d32; }
-    .login-box .btn { width: 100%; padding: 12px; font-size: 16px; }
-    .login-box .error { color: #c62828; font-size: 13px; margin-top: 8px; display: none; }
+    .login-box { background: white; padding: 36px 32px; border-radius: 16px; max-width: 400px; width: 100%; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+    .login-box .icon { font-size: 48px; margin-bottom: 10px; text-align: center; }
+    .login-box h2 { color: #1b5e20; margin-bottom: 4px; text-align: center; font-size: 22px; }
+    .login-box .subtitle { color: #888; font-size: 13px; margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #333; margin-bottom: 6px; }
+    .form-group input, .form-group select { width: 100%; padding: 12px 14px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 15px; font-family: inherit; background: #fafffa; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #2e7d32; background: white; }
+    .login-box .btn { width: 100%; padding: 13px; font-size: 15px; margin-top: 6px; }
+    .login-box .error { color: #c62828; font-size: 13px; margin-top: 10px; display: none; text-align: center; padding: 10px; background: #ffebee; border-radius: 6px; }
     .login-box .error.show { display: block; }
     
-    /* Loading overlay */
+    /* Loading spinner */
     .loading { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 4px; }
     @keyframes spin { to { transform: rotate(360deg); } }
     
     @media (max-width: 600px) {
       .app-container { padding: 12px; }
       .header { padding: 14px 18px; }
-      .header h1 { font-size: 17px; }
+      .header-info h1 { font-size: 16px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .filter-row { flex-direction: column; }
       .card { padding: 14px 16px; }
       table { font-size: 12px; }
       table th, table td { padding: 6px 8px; }
+      .login-box { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -113,19 +110,39 @@
     <div class="login-box">
       <div class="icon">🔐</div>
       <h2>CBT Pengawas Ruang</h2>
-      <p>MAS Ash Shidiqi</p>
-      <input type="password" id="passwordInput" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter') login()">
-      <button class="btn btn-primary" onclick="login()">🔓 Masuk</button>
-      <div id="loginError" class="error">❌ Password salah! Coba lagi.</div>
+      <div class="subtitle">MAS Ash Shidiqi</div>
+
+      <div class="form-group">
+        <label>👤 Nama Pengawas</label>
+        <input type="text" id="inputNama" placeholder="Contoh: Bu Ahmad" autocomplete="off" onkeydown="if(event.key==='Enter') document.getElementById('inputKelas').focus()">
+      </div>
+
+      <div class="form-group">
+        <label>🏫 Ruang / Kelas</label>
+        <select id="inputKelas">
+          <option value="">-- Pilih Kelas --</option>
+          <option value="X">Kelas X</option>
+          <option value="XI">Kelas XI</option>
+          <option value="XII">Kelas XII</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>🔑 Password</label>
+        <input type="password" id="inputPassword" placeholder="Password pengawas" onkeydown="if(event.key==='Enter') login()">
+      </div>
+
+      <button class="btn btn-primary" onclick="login()">🔓 Masuk sebagai Pengawas</button>
+      <div id="loginError" class="error"></div>
     </div>
   </div>
 
   <!-- APLIKASI -->
   <div class="app-container" id="appMain" style="display:none;">
     <div class="header">
-      <div>
-        <h1>🎯 CBT Pengawas Ruang</h1>
-        <small>MAS ASH SHIDIQI</small>
+      <div class="header-info">
+        <h1>🎯 Pengawas: <span id="hdrNama">-</span></h1>
+        <div class="sub">Ruang: <strong id="hdrKelas">-</strong> · MAS Ash Shidiqi</div>
       </div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span class="status-badge" id="statusBadge">⏳ Memuat...</span>
@@ -133,20 +150,10 @@
       </div>
     </div>
 
-    <!-- Filter -->
-    <div class="card">
-      <div class="filter-row">
-        <select id="filterUjian">
-          <option value="">📚 -- Pilih Ujian --</option>
-        </select>
-        <button class="btn btn-primary" onclick="applyFilter()">🔍 Tampilkan</button>
-      </div>
-    </div>
-
-    <!-- Info & Refresh -->
+    <!-- Info Ujian Aktif -->
     <div class="card">
       <div class="info-bar">
-        <span id="infoUjian">📋 Pilih ujian di atas</span>
+        <span id="infoUjian">📋 Memuat ujian...</span>
         <span>
           🔄 Auto-refresh: <span class="countdown" id="countdown">30</span>s
           &nbsp;|&nbsp; ⏰ Update: <span id="lastUpdate">-</span>
@@ -182,14 +189,13 @@
       <div class="table-wrapper" id="tableWrapper">
         <div class="empty-state">
           <div class="icon">📭</div>
-          <h3>Belum ada data</h3>
-          <p>Pilih ujian dan tunggu data muncul.</p>
+          <h3>Memuat data...</h3>
         </div>
       </div>
     </div>
 
     <div class="footer">
-      &copy; 2026 CBT Pengawas Ruang - MAS Ash Shidiqi
+      &copy; 2026 CBT Pengawas Ruang · MAS Ash Shidiqi
     </div>
   </div>
 
@@ -197,11 +203,21 @@
 'use strict';
 
 // ============================================================
-// KONFIGURASI — INTEGRASI DENGAN BACKEND CBT ONLINE
+// KONFIGURASI
 // ============================================================
 var CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbx3uT2gp42KNFt1cvCKx_XGNV1a_oWWmH9acffnL27MiZcUmYs050Gj9u2STh-8fhow/exec',
-  PASSWORD: '123456',
+  
+  // Password global (semua kelas sama)
+  PASSWORD: 'pengawas2026',
+  
+  // ATAU: password per kelas (comment yang atas, pakai ini)
+  // PASSWORD_PER_KELAS: {
+  //   'X':   'ruangX2026',
+  //   'XI':  'ruangXI2026',
+  //   'XII': 'ruangXII2026'
+  // },
+  
   AUTO_REFRESH_INTERVAL: 30
 };
 
@@ -209,69 +225,142 @@ var CONFIG = {
 // STATE
 // ============================================================
 var isLoggedIn = false;
+var pengawasData = null;   // { nama, kelas }
 var autoRefreshTimer = null;
 var isAutoRefresh = true;
 var countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-var ujianList = [];
-var currentUjian = null;
+var ujianAktif = null;     // ujian yang sedang aktif (kelas pengawas)
 var currentData = null;
 
 // ============================================================
 // LOGIN
 // ============================================================
 function login() {
-  var password = document.getElementById('passwordInput').value;
+  var nama = document.getElementById('inputNama').value.trim();
+  var kelas = document.getElementById('inputKelas').value;
+  var password = document.getElementById('inputPassword').value;
   var errorEl = document.getElementById('loginError');
 
-  if (password === CONFIG.PASSWORD) {
-    isLoggedIn = true;
-    document.getElementById('loginOverlay').classList.add('hidden');
-    document.getElementById('appMain').style.display = 'block';
-    errorEl.classList.remove('show');
-    try { localStorage.setItem('cbt_pengawas_login', '1'); } catch (e) {}
-    initializeApp();
-  } else {
-    errorEl.classList.add('show');
-    document.getElementById('passwordInput').value = '';
-    document.getElementById('passwordInput').focus();
+  // Validasi
+  if (!nama) {
+    showLoginError('❌ Nama pengawas wajib diisi.');
+    return;
   }
+  if (!kelas) {
+    showLoginError('❌ Pilih kelas / ruang terlebih dahulu.');
+    return;
+  }
+  if (!password) {
+    showLoginError('❌ Password wajib diisi.');
+    return;
+  }
+
+  // Cek password
+  var validPassword = false;
+
+  if (CONFIG.PASSWORD_PER_KELAS) {
+    // Mode password per kelas
+    validPassword = (CONFIG.PASSWORD_PER_KELAS[kelas] === password);
+  } else {
+    // Mode password global
+    validPassword = (password === CONFIG.PASSWORD);
+  }
+
+  if (!validPassword) {
+    showLoginError('❌ Password salah! Coba lagi.');
+    document.getElementById('inputPassword').value = '';
+    document.getElementById('inputPassword').focus();
+    return;
+  }
+
+  // Login sukses
+  isLoggedIn = true;
+  pengawasData = { nama: nama, kelas: kelas };
+
+  // Simpan sesi
+  try {
+    localStorage.setItem('cbt_pengawas_session', JSON.stringify(pengawasData));
+  } catch (e) {}
+
+  // Tampilkan aplikasi
+  document.getElementById('loginOverlay').classList.add('hidden');
+  document.getElementById('appMain').style.display = 'block';
+  document.getElementById('hdrNama').textContent = nama;
+  document.getElementById('hdrKelas').textContent = 'Kelas ' + kelas;
+  errorEl.classList.remove('show');
+
+  // Inisialisasi
+  initializeApp();
 }
 
-function logout() {
-  if (confirm('Yakin ingin keluar?')) {
-    isLoggedIn = false;
-    stopAutoRefresh();
-    try { localStorage.removeItem('cbt_pengawas_login'); } catch (e) {}
-    document.getElementById('loginOverlay').classList.remove('hidden');
-    document.getElementById('appMain').style.display = 'none';
-    document.getElementById('passwordInput').value = '';
-  }
+function showLoginError(msg) {
+  var el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.classList.add('show');
 }
 
 // Auto-login kalau sudah login sebelumnya
 document.addEventListener('DOMContentLoaded', function() {
   try {
-    if (localStorage.getItem('cbt_pengawas_login') === '1') {
-      isLoggedIn = true;
-      document.getElementById('loginOverlay').classList.add('hidden');
-      document.getElementById('appMain').style.display = 'block';
-      initializeApp();
+    var saved = localStorage.getItem('cbt_pengawas_session');
+    if (saved) {
+      var data = JSON.parse(saved);
+      if (data && data.nama && data.kelas) {
+        pengawasData = data;
+        isLoggedIn = true;
+        document.getElementById('loginOverlay').classList.add('hidden');
+        document.getElementById('appMain').style.display = 'block';
+        document.getElementById('hdrNama').textContent = data.nama;
+        document.getElementById('hdrKelas').textContent = 'Kelas ' + data.kelas;
+        initializeApp();
+        return;
+      }
     }
   } catch (e) {}
 
-  document.getElementById('passwordInput').focus();
+  // Kalau belum login → fokus ke input nama
+  setTimeout(function() {
+    var input = document.getElementById('inputNama');
+    if (input) input.focus();
+  }, 200);
 });
+
+// ============================================================
+// LOGOUT
+// ============================================================
+function logout() {
+  if (!confirm('Yakin ingin keluar dari aplikasi pengawas?')) return;
+
+  isLoggedIn = false;
+  pengawasData = null;
+  stopAutoRefresh();
+
+  try { localStorage.removeItem('cbt_pengawas_session'); } catch (e) {}
+
+  document.getElementById('loginOverlay').classList.remove('hidden');
+  document.getElementById('appMain').style.display = 'none';
+
+  // Reset form
+  document.getElementById('inputNama').value = '';
+  document.getElementById('inputKelas').value = '';
+  document.getElementById('inputPassword').value = '';
+  document.getElementById('loginError').classList.remove('show');
+
+  setTimeout(function() {
+    document.getElementById('inputNama').focus();
+  }, 200);
+}
 
 // ============================================================
 // INIT
 // ============================================================
 function initializeApp() {
-  loadUjianList();
+  loadUjianAktif();
   startAutoRefresh();
 }
 
 // ============================================================
-// FETCH KE BACKEND (POST)
+// FETCH BACKEND
 // ============================================================
 function callBackend(action, args) {
   return new Promise(function(resolve, reject) {
@@ -288,84 +377,56 @@ function callBackend(action, args) {
 }
 
 // ============================================================
-// LOAD UJIAN
+// LOAD UJIAN AKTIF (HANYA KELAS PENGAWAS)
 // ============================================================
-function loadUjianList() {
-  var select = document.getElementById('filterUjian');
-  select.innerHTML = '<option value="">⏳ Memuat ujian...</option>';
-
-  document.getElementById('statusBadge').textContent = '⏳ Memuat ujian...';
+function loadUjianAktif() {
+  document.getElementById('statusBadge').innerHTML = '<span class="loading"></span>Memuat...';
   document.getElementById('statusBadge').className = 'status-badge';
 
   callBackend('getAllCATUjian')
     .then(function(list) {
       list = Array.isArray(list) ? list : [];
-      ujianList = list;
 
-      select.innerHTML = '<option value="">📚 -- Pilih Ujian --</option>';
+      // Filter: HANYA kelas pengawas + status AKTIF
+      var kelasPengawas = pengawasData.kelas;
+      var filtered = list.filter(function(u) {
+        var matchKelas = String(u.kelas).toUpperCase() === String(kelasPengawas).toUpperCase();
+        var matchStatus = String(u.status).toUpperCase() === 'AKTIF';
+        return matchKelas && matchStatus;
+      });
 
-      if (!list.length) {
-        select.innerHTML = '<option value="">📭 Belum ada ujian</option>';
-        document.getElementById('statusBadge').textContent = '⚠️ Belum ada ujian';
+      if (!filtered.length) {
+        document.getElementById('statusBadge').textContent = '⏸️ Tidak ada ujian aktif';
+        document.getElementById('statusBadge').className = 'status-badge';
+        document.getElementById('infoUjian').textContent = '⏸️ Tidak ada ujian aktif untuk Kelas ' + kelasPengawas;
+        showEmptyState('⏸️', 'Tidak ada ujian aktif',
+          'Ruang Kelas ' + kelasPengawas + ' belum ada ujian yang dibuka. Tunggu admin membuka ujian.');
+        resetStats();
+        ujianAktif = null;
         return;
       }
 
-      list.forEach(function(u) {
-        var o = document.createElement('option');
-        o.value = u.id;
-        var icon = String(u.status).toUpperCase() === 'AKTIF' ? '🟢' :
-                   String(u.status).toUpperCase() === 'TERJADWAL' ? '🟡' : '⚪';
-        o.textContent = icon + ' ' + u.mapel + ' - ' + u.kelas + ' (' + u.status + ')';
-        o.dataset.ujian = JSON.stringify(u);
-        select.appendChild(o);
-      });
+      // Ambil ujian pertama (asumsi 1 ujian per kelas)
+      ujianAktif = filtered[0];
 
-      // Auto-select ujian AKTIF pertama
-      var aktifIdx = -1;
-      for (var i = 1; i < select.options.length; i++) {
-        var u = JSON.parse(select.options[i].dataset.ujian || '{}');
-        if (String(u.status).toUpperCase() === 'AKTIF') { aktifIdx = i; break; }
-      }
-      if (aktifIdx === -1 && select.options.length > 1) aktifIdx = 1;
+      document.getElementById('infoUjian').innerHTML =
+        '📚 <strong>' + escapeHtml(ujianAktif.mapel) + '</strong> - Kelas ' + escapeHtml(ujianAktif.kelas) +
+        ' <span style="color:#2e7d32;">🟢 AKTIF</span>' +
+        (ujianAktif.jenisPenilaian ? ' · ' + escapeHtml(ujianAktif.jenisPenilaian) : '');
 
-      if (aktifIdx > 0) {
-        select.selectedIndex = aktifIdx;
-        applyFilter();
-      }
-
-      document.getElementById('statusBadge').textContent = '✅ ' + list.length + ' ujian';
+      document.getElementById('statusBadge').textContent = '✅ Ujian aktif';
       document.getElementById('statusBadge').className = 'status-badge active';
+
+      // Load data monitoring
+      loadMonitoringData(ujianAktif.id);
     })
     .catch(function(error) {
-      console.error('Error loadUjianList:', error);
+      console.error('Error loadUjianAktif:', error);
       document.getElementById('statusBadge').textContent = '❌ Error koneksi';
       document.getElementById('statusBadge').className = 'status-badge';
-      select.innerHTML = '<option value="">❌ Gagal memuat</option>';
+      document.getElementById('infoUjian').textContent = '❌ Gagal terhubung ke server';
+      showEmptyState('❌', 'Error koneksi', 'Periksa koneksi internet Anda.');
     });
-}
-
-// ============================================================
-// APPLY FILTER
-// ============================================================
-function applyFilter() {
-  var select = document.getElementById('filterUjian');
-  var opt = select.options[select.selectedIndex];
-
-  if (!opt || !opt.value) {
-    document.getElementById('infoUjian').textContent = '⚠️ Pilih ujian dulu';
-    showEmptyState('📭', 'Belum pilih ujian', 'Pilih ujian di dropdown atas.');
-    resetStats();
-    return;
-  }
-
-  try { currentUjian = JSON.parse(opt.dataset.ujian || '{}'); }
-  catch (e) { currentUjian = null; }
-
-  document.getElementById('infoUjian').textContent =
-    '📋 ' + (currentUjian.mapel || '-') + ' - Kelas ' + (currentUjian.kelas || '-') +
-    ' (' + (currentUjian.status || '-') + ')';
-
-  loadMonitoringData(opt.value);
 }
 
 // ============================================================
@@ -374,7 +435,7 @@ function applyFilter() {
 function loadMonitoringData(idUjian) {
   if (!idUjian) return;
 
-  document.getElementById('statusBadge').innerHTML = '<span class="loading"></span>Memuat data...';
+  document.getElementById('statusBadge').innerHTML = '<span class="loading"></span>Memuat...';
   document.getElementById('statusBadge').className = 'status-badge';
 
   callBackend('getMonitoringPengawas', [idUjian])
@@ -393,7 +454,7 @@ function loadMonitoringData(idUjian) {
     .catch(function(error) {
       console.error('Error loadMonitoringData:', error);
       document.getElementById('statusBadge').textContent = '❌ Error koneksi';
-      showEmptyState('❌', 'Error', error.message);
+      showEmptyState('❌', 'Error koneksi', error.message);
     });
 }
 
@@ -430,7 +491,7 @@ function renderData(data) {
   }
 
   var html = '<table><thead><tr>';
-  html += '<th>No</th><th>No Tes</th><th>Nama</th><th>Kelas</th><th>Progress</th><th>Nilai</th><th>Status</th><th>Waktu</th>';
+  html += '<th>No</th><th>No Tes</th><th>Nama</th><th>Progress</th><th>Nilai</th><th>Status</th><th>Waktu</th>';
   html += '</tr></thead><tbody>';
 
   list.forEach(function(s, i) {
@@ -449,7 +510,6 @@ function renderData(data) {
     html += '<td>' + (i + 1) + '</td>';
     html += '<td><strong>' + escapeHtml(s.noTes) + '</strong></td>';
     html += '<td>' + escapeHtml(s.nama) + '</td>';
-    html += '<td>' + escapeHtml(s.kelas) + '</td>';
     html += '<td style="font-size:12px;color:#666;">' + progress + '</td>';
     html += '<td style="font-weight:700;color:#1a237e;">' + nilaiDisplay + '</td>';
     html += '<td><span class="status-badge-sm ' + statusClass + '">' + statusText + '</span></td>';
@@ -546,23 +606,20 @@ function refreshManual() {
   countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
   updateCountdownDisplay();
 
-  var select = document.getElementById('filterUjian');
-  if (select.value) {
-    loadMonitoringData(select.value);
-  } else {
-    loadUjianList();
-  }
+  // Reload ujian aktif dulu (takut ada ujian baru dibuka)
+  loadUjianAktif();
 
   setTimeout(function() {
     btn.textContent = '🔄 Refresh';
     btn.disabled = false;
-  }, 1500);
+  }, 2000);
 }
 
 function refreshData() {
-  var select = document.getElementById('filterUjian');
-  if (select && select.value) {
-    loadMonitoringData(select.value);
+  if (ujianAktif && ujianAktif.id) {
+    loadMonitoringData(ujianAktif.id);
+  } else {
+    loadUjianAktif();
   }
 }
 
@@ -570,6 +627,7 @@ function refreshData() {
 // JALANKAN
 // ============================================================
 console.log('🚀 CBT Pengawas Ruang - MAS Ash Shidiqi');
+console.log('🔐 Mode: Login dengan Nama + Kelas + Password');
 </script>
 </body>
 </html>
