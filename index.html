@@ -3,503 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CBT Pengawas Ruang</title>
-  
+  <title>CBT Pengawas Ruang - MAS Ash Shidiqi</title>
   <style>
-    /* ============================================================
-       STYLE - TEMA HIJAU
-       ============================================================ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-      background: #f0f7f0;
-      min-height: 100vh;
-      color: #1a3a1a;
-    }
-    
-    /* Container */
-    .app-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f7f0; min-height: 100vh; color: #1a3a1a; }
+    .app-container { max-width: 900px; margin: 0 auto; padding: 20px; }
     
     /* Header */
-    .header {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      color: white;
-      padding: 20px 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    .header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .header h1 small {
-      font-size: 14px;
-      font-weight: 400;
-      opacity: 0.8;
-    }
-    
-    .header .status-badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    
-    .header .status-badge.active {
-      background: #4caf50;
-      animation: pulse 1.5s infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
+    .header { background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white; padding: 20px 25px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(27,94,32,0.3); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .header h1 { font-size: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .header h1 small { font-size: 13px; font-weight: 400; opacity: 0.8; display: block; margin-top: 2px; }
+    .status-badge { background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    .status-badge.active { background: #4caf50; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
     
     /* Card */
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-      border-left: 4px solid #2e7d32;
-    }
-    
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1b5e20;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .card { background: white; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-left: 4px solid #2e7d32; }
+    .card-title { font-size: 16px; font-weight: 600; color: #1b5e20; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
     
     /* Filter */
-    .filter-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
+    .filter-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .filter-row select { flex: 1; min-width: 150px; padding: 10px 14px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 14px; background: #fafffa; font-family: inherit; }
+    .filter-row select:focus { outline: none; border-color: #2e7d32; }
+    .filter-row .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: 0.3s; }
     
-    .filter-row select {
-      flex: 1;
-      min-width: 150px;
-      padding: 10px 14px;
-      border: 2px solid #c8e6c9;
-      border-radius: 8px;
-      font-size: 14px;
-      background: #fafffa;
-      transition: border-color 0.3s;
-    }
+    /* Buttons */
+    .btn-primary { background: #2e7d32; color: white; }
+    .btn-primary:hover { background: #1b5e20; }
+    .btn-outline { background: transparent; border: 2px solid #2e7d32; color: #2e7d32; }
+    .btn-outline:hover { background: #2e7d32; color: white; }
+    .btn-danger { background: #c62828; color: white; }
+    .btn-danger:hover { background: #b71c1c; }
+    .btn-success { background: #43a047; color: white; }
+    .btn-success:hover { background: #2e7d32; }
+    .btn-sm { padding: 6px 14px; font-size: 12px; }
     
-    .filter-row select:focus {
-      outline: none;
-      border-color: #2e7d32;
-    }
-    
-    .filter-row .btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    
-    .btn-primary {
-      background: #2e7d32;
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: #1b5e20;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
-    }
-    
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-    
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #2e7d32;
-      color: #2e7d32;
-    }
-    
-    .btn-outline:hover {
-      background: #2e7d32;
-      color: white;
-    }
-    
-    .btn-danger {
-      background: #c62828;
-      color: white;
-    }
-    
-    .btn-danger:hover {
-      background: #b71c1c;
-    }
-    
-    .btn-success {
-      background: #43a047;
-      color: white;
-    }
-    
-    .btn-success:hover {
-      background: #2e7d32;
-    }
-    
-    .btn-sm {
-      padding: 6px 14px;
-      font-size: 12px;
-    }
-    
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    
-    .stat-card {
-      background: #fafffa;
-      padding: 14px 16px;
-      border-radius: 10px;
-      text-align: center;
-      border: 1px solid #e8f5e9;
-    }
-    
-    .stat-card .number {
-      font-size: 28px;
-      font-weight: 700;
-      color: #1b5e20;
-    }
-    
-    .stat-card .label {
-      font-size: 12px;
-      color: #666;
-      margin-top: 2px;
-    }
-    
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .stat-card { background: #fafffa; padding: 14px 16px; border-radius: 10px; text-align: center; border: 1px solid #e8f5e9; }
+    .stat-card .number { font-size: 26px; font-weight: 700; color: #1b5e20; }
+    .stat-card .label { font-size: 12px; color: #666; margin-top: 2px; }
     .stat-card.success .number { color: #2e7d32; }
     .stat-card.warning .number { color: #f57c00; }
     .stat-card.danger .number { color: #c62828; }
     .stat-card.primary .number { color: #1565c0; }
     
-    /* Progress Bar */
-    .progress-container {
-      background: #e8f5e9;
-      border-radius: 10px;
-      height: 22px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
+    /* Progress */
+    .progress-container { background: #e8f5e9; border-radius: 10px; height: 22px; overflow: hidden; margin-bottom: 10px; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #43a047, #2e7d32); transition: width 0.5s; border-radius: 10px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #555; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
     
-    .progress-bar {
-      display: flex;
-      height: 100%;
-      transition: width 0.5s;
-      border-radius: 10px;
-    }
+    /* Table */
+    .table-wrapper { overflow-x: auto; max-height: 450px; overflow-y: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table th { background: #e8f5e9; color: #1b5e20; padding: 10px 12px; text-align: left; position: sticky; top: 0; z-index: 10; font-weight: 600; }
+    table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+    table tr:hover td { background: #fafffa; }
+    .status-badge-sm { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .status-badge-sm.selesai { background: #e3f2fd; color: #1565c0; }
+    .status-badge-sm.mengerjakan { background: #fff8e1; color: #f57c00; }
+    .status-badge-sm.login { background: #e8f5e9; color: #2e7d32; }
+    .status-badge-sm.belum { background: #f5f5f5; color: #888; }
     
-    .progress-selesai {
-      background: linear-gradient(90deg, #43a047, #2e7d32);
-    }
-    
-    .progress-belum {
-      background: #e0e0e0;
-    }
-    
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #555;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    
-    /* Tabel */
-    .table-wrapper {
-      overflow-x: auto;
-      max-height: 450px;
-      overflow-y: auto;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    
-    table th {
-      background: #e8f5e9;
-      color: #1b5e20;
-      padding: 10px 12px;
-      text-align: left;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      font-weight: 600;
-    }
-    
-    table td {
-      padding: 8px 12px;
-      border-bottom: 1px solid #f0f0f0;
-    }
-    
-    table tr:hover td {
-      background: #fafffa;
-    }
-    
-    .status-badge-sm {
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    
-    .status-badge-sm.valid {
-      background: #e8f5e9;
-      color: #2e7d32;
-    }
-    
-    .status-badge-sm.invalid {
-      background: #ffebee;
-      color: #c62828;
-    }
-    
-    .status-badge-sm.waiting {
-      background: #fff8e1;
-      color: #f57c00;
-    }
-    
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: #888;
-    }
-    
-    .empty-state .icon {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    
-    .empty-state h3 {
-      color: #555;
-      margin-bottom: 6px;
-    }
+    /* Empty */
+    .empty-state { text-align: center; padding: 40px 20px; color: #888; }
+    .empty-state .icon { font-size: 48px; margin-bottom: 10px; }
+    .empty-state h3 { color: #555; margin-bottom: 6px; }
     
     /* Footer */
-    .footer {
-      text-align: center;
-      padding: 16px;
-      color: #888;
-      font-size: 12px;
-      border-top: 1px solid #e8f5e9;
-      margin-top: 10px;
-    }
+    .footer { text-align: center; padding: 16px; color: #888; font-size: 12px; border-top: 1px solid #e8f5e9; margin-top: 10px; }
     
-    .footer a {
-      color: #2e7d32;
-      text-decoration: none;
-    }
+    /* Info bar */
+    .info-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; color: #666; padding: 8px 0; }
+    .info-bar .countdown { color: #2e7d32; font-weight: 600; }
     
-    /* Info Bar */
-    .info-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 12px;
-      color: #666;
-      padding: 8px 0;
-    }
+    /* Login */
+    #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+    #loginOverlay.hidden { display: none; }
+    .login-box { background: white; padding: 40px; border-radius: 16px; max-width: 380px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+    .login-box .icon { font-size: 48px; margin-bottom: 10px; }
+    .login-box h2 { color: #1b5e20; margin-bottom: 6px; }
+    .login-box p { color: #888; font-size: 14px; margin-bottom: 20px; }
+    .login-box input { width: 100%; padding: 12px 16px; border: 2px solid #c8e6c9; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 12px; font-family: inherit; }
+    .login-box input:focus { outline: none; border-color: #2e7d32; }
+    .login-box .btn { width: 100%; padding: 12px; font-size: 16px; }
+    .login-box .error { color: #c62828; font-size: 13px; margin-top: 8px; display: none; }
+    .login-box .error.show { display: block; }
     
-    .info-bar .countdown {
-      color: #2e7d32;
-      font-weight: 600;
-    }
+    /* Loading overlay */
+    .loading { display: inline-block; width: 12px; height: 12px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 4px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     
-    /* Login Overlay */
-    #loginOverlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(5px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    
-    #loginOverlay.hidden {
-      display: none;
-    }
-    
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 16px;
-      max-width: 380px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-    
-    .login-box .icon {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    
-    .login-box h2 {
-      color: #1b5e20;
-      margin-bottom: 6px;
-    }
-    
-    .login-box p {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    
-    .login-box input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #c8e6c9;
-      border-radius: 8px;
-      font-size: 16px;
-      text-align: center;
-      margin-bottom: 12px;
-      transition: border-color 0.3s;
-    }
-    
-    .login-box input:focus {
-      outline: none;
-      border-color: #2e7d32;
-    }
-    
-    .login-box .btn {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-    }
-    
-    .login-box .error {
-      color: #c62828;
-      font-size: 13px;
-      margin-top: 8px;
-      display: none;
-    }
-    
-    .login-box .error.show {
-      display: block;
-    }
-    
-    /* Responsive */
     @media (max-width: 600px) {
       .app-container { padding: 12px; }
       .header { padding: 14px 18px; }
-      .header h1 { font-size: 18px; }
+      .header h1 { font-size: 17px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .filter-row { flex-direction: column; }
-      .filter-row select { min-width: 100%; }
       .card { padding: 14px 16px; }
-      .table-wrapper { max-height: 350px; }
       table { font-size: 12px; }
       table th, table td { padding: 6px 8px; }
-    }
-    
-    @media (max-width: 400px) {
-      .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .stat-card { padding: 10px; }
-      .stat-card .number { font-size: 22px; }
-    }
-    
-    /* Scrollbar */
-    .table-wrapper::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    
-    .table-wrapper::-webkit-scrollbar-track {
-      background: #f0f0f0;
-      border-radius: 10px;
-    }
-    
-    .table-wrapper::-webkit-scrollbar-thumb {
-      background: #c8e6c9;
-      border-radius: 10px;
-    }
-    
-    .table-wrapper::-webkit-scrollbar-thumb:hover {
-      background: #a5d6a7;
     }
   </style>
 </head>
 <body>
 
-  <!-- ============================================================
-  LOGIN OVERLAY
-  ============================================================ -->
+  <!-- LOGIN -->
   <div id="loginOverlay">
     <div class="login-box">
       <div class="icon">🔐</div>
       <h2>CBT Pengawas Ruang</h2>
-      <p>Masukkan password untuk mengakses monitoring</p>
+      <p>MAS Ash Shidiqi</p>
       <input type="password" id="passwordInput" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter') login()">
       <button class="btn btn-primary" onclick="login()">🔓 Masuk</button>
       <div id="loginError" class="error">❌ Password salah! Coba lagi.</div>
     </div>
   </div>
 
-  <!-- ============================================================
-  APLIKASI UTAMA
-  ============================================================ -->
+  <!-- APLIKASI -->
   <div class="app-container" id="appMain" style="display:none;">
-
-    <!-- Header -->
     <div class="header">
       <div>
-        <h1>
-          🎯 CBT Pengawas Ruang
-          <small>MAS ASH SHIDIQI</small>
-        </h1>
+        <h1>🎯 CBT Pengawas Ruang</h1>
+        <small>MAS ASH SHIDIQI</small>
       </div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <span class="status-badge" id="statusBadge">⏳ Memuat...</span>
@@ -510,14 +136,8 @@
     <!-- Filter -->
     <div class="card">
       <div class="filter-row">
-        <select id="filterMapel">
-          <option value="semua">📚 SEMUA MAPEL</option>
-        </select>
-        <select id="filterKelas">
-          <option value="semua">📖 SEMUA KELAS</option>
-          <option value="X">Kelas X</option>
-          <option value="XI">Kelas XI</option>
-          <option value="XII">Kelas XII</option>
+        <select id="filterUjian">
+          <option value="">📚 -- Pilih Ujian --</option>
         </select>
         <button class="btn btn-primary" onclick="applyFilter()">🔍 Tampilkan</button>
       </div>
@@ -528,7 +148,7 @@
       <div class="info-bar">
         <span id="infoUjian">📋 Pilih ujian di atas</span>
         <span>
-          🔄 Auto-refresh: <span class="countdown" id="countdown">30</span> detik
+          🔄 Auto-refresh: <span class="countdown" id="countdown">30</span>s
           &nbsp;|&nbsp; ⏰ Update: <span id="lastUpdate">-</span>
         </span>
         <div style="display:flex;gap:8px;">
@@ -538,31 +158,27 @@
       </div>
     </div>
 
-    <!-- Statistik -->
+    <!-- Stats -->
     <div class="card">
       <div class="stats-grid" id="statsGrid">
-        <div class="stat-card success"><div class="number">-</div><div class="label">✅ Selesai</div></div>
-        <div class="stat-card warning"><div class="number">-</div><div class="label">⏳ Belum</div></div>
-        <div class="stat-card primary"><div class="number">-</div><div class="label">📊 Total Siswa</div></div>
+        <div class="stat-card primary"><div class="number">-</div><div class="label">📊 Total</div></div>
+        <div class="stat-card success"><div class="number">-</div><div class="label">🔵 Selesai</div></div>
+        <div class="stat-card warning"><div class="number">-</div><div class="label">🟡 Mengerjakan</div></div>
+        <div class="stat-card success"><div class="number">-</div><div class="label">🟢 Login</div></div>
+        <div class="stat-card danger"><div class="number">-</div><div class="label">⚪ Belum</div></div>
         <div class="stat-card primary"><div class="number">-</div><div class="label">📈 Progres</div></div>
-        <div class="stat-card success"><div class="number">-</div><div class="label">✅ Valid</div></div>
-        <div class="stat-card danger"><div class="number">-</div><div class="label">❌ Tidak Valid</div></div>
       </div>
-      
-      <!-- Progress Bar -->
       <div class="progress-container">
-        <div class="progress-bar" id="progressBar">
-          <div class="progress-selesai" id="progressSelesai" style="width:0%;"></div>
-        </div>
+        <div class="progress-bar" id="progressBar" style="width:0%;"></div>
       </div>
       <div class="progress-label">
         <span id="progressText">🟢 Selesai: 0%</span>
       </div>
     </div>
 
-    <!-- Tabel Siswa Selesai -->
+    <!-- Tabel -->
     <div class="card">
-      <div class="card-title">📋 Daftar Siswa Selesai <span id="countSelesai" style="font-weight:400;color:#888;font-size:13px;">(0)</span></div>
+      <div class="card-title">📋 Daftar Siswa <span id="countSiswa" style="font-weight:400;color:#888;font-size:13px;">(0)</span></div>
       <div class="table-wrapper" id="tableWrapper">
         <div class="empty-state">
           <div class="icon">📭</div>
@@ -572,455 +188,388 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
-      &copy; 2026 CBT Pengawas Ruang - Data dari <a href="#" onclick="alert('Spreadsheet ID: ' + CONFIG.SPREADSHEET_ID)">Google Spreadsheet</a>
+      &copy; 2026 CBT Pengawas Ruang - MAS Ash Shidiqi
     </div>
   </div>
 
-  <!-- ============================================================
-  SCRIPT
-  ============================================================ -->
-  <script>
-    'use strict';
+<script>
+'use strict';
 
-    // ============================================================
-    // KONFIGURASI
-    // ============================================================
-    var CONFIG = {
-      SPREADSHEET_ID: '1FP1u0IEUrPCflWGqcN6qvjRquzOOW40dlviSpuOO5_E',
-      PASSWORD: '123456',  // Password standar
-      AUTO_REFRESH_INTERVAL: 30, // Detik
-      API_URL: 'https://script.google.com/macros/s/AKfycbyXe51vRK7ij_PhtY95WX44LuCsHk95MyIh6cMZeyLeID1mX_vZZzzpLObUkzEbwN--/exec' // Ganti dengan URL deploy Anda
-    };
+// ============================================================
+// KONFIGURASI — INTEGRASI DENGAN BACKEND CBT ONLINE
+// ============================================================
+var CONFIG = {
+  API_URL: 'https://script.google.com/macros/s/AKfycbx3uT2gp42KNFt1cvCKx_XGNV1a_oWWmH9acffnL27MiZcUmYs050Gj9u2STh-8fhow/exec',
+  PASSWORD: '123456',
+  AUTO_REFRESH_INTERVAL: 30
+};
 
-    // ============================================================
-    // VARIABEL GLOBAL
-    // ============================================================
-    var isLoggedIn = false;
-    var autoRefreshTimer = null;
-    var isAutoRefresh = true;
-    var countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-    var currentData = null;
-    var ujianList = [];
+// ============================================================
+// STATE
+// ============================================================
+var isLoggedIn = false;
+var autoRefreshTimer = null;
+var isAutoRefresh = true;
+var countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
+var ujianList = [];
+var currentUjian = null;
+var currentData = null;
 
-    // ============================================================
-    // LOGIN
-    // ============================================================
-    function login() {
-      var password = document.getElementById('passwordInput').value;
-      var errorEl = document.getElementById('loginError');
-      
-      if (password === CONFIG.PASSWORD) {
-        isLoggedIn = true;
-        document.getElementById('loginOverlay').classList.add('hidden');
-        document.getElementById('appMain').style.display = 'block';
-        errorEl.classList.remove('show');
-        initializeApp();
-      } else {
-        errorEl.classList.add('show');
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('passwordInput').focus();
-      }
+// ============================================================
+// LOGIN
+// ============================================================
+function login() {
+  var password = document.getElementById('passwordInput').value;
+  var errorEl = document.getElementById('loginError');
+
+  if (password === CONFIG.PASSWORD) {
+    isLoggedIn = true;
+    document.getElementById('loginOverlay').classList.add('hidden');
+    document.getElementById('appMain').style.display = 'block';
+    errorEl.classList.remove('show');
+    try { localStorage.setItem('cbt_pengawas_login', '1'); } catch (e) {}
+    initializeApp();
+  } else {
+    errorEl.classList.add('show');
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  }
+}
+
+function logout() {
+  if (confirm('Yakin ingin keluar?')) {
+    isLoggedIn = false;
+    stopAutoRefresh();
+    try { localStorage.removeItem('cbt_pengawas_login'); } catch (e) {}
+    document.getElementById('loginOverlay').classList.remove('hidden');
+    document.getElementById('appMain').style.display = 'none';
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+// Auto-login kalau sudah login sebelumnya
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    if (localStorage.getItem('cbt_pengawas_login') === '1') {
+      isLoggedIn = true;
+      document.getElementById('loginOverlay').classList.add('hidden');
+      document.getElementById('appMain').style.display = 'block';
+      initializeApp();
     }
+  } catch (e) {}
 
-    function logout() {
-      if (confirm('Yakin ingin keluar?')) {
-        isLoggedIn = false;
-        stopAutoRefresh();
-        document.getElementById('loginOverlay').classList.remove('hidden');
-        document.getElementById('appMain').style.display = 'none';
-        document.getElementById('passwordInput').value = '';
-        document.getElementById('loginError').classList.remove('show');
-      }
-    }
+  document.getElementById('passwordInput').focus();
+});
 
-    // Login dengan Enter
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !isLoggedIn) {
-        login();
+// ============================================================
+// INIT
+// ============================================================
+function initializeApp() {
+  loadUjianList();
+  startAutoRefresh();
+}
+
+// ============================================================
+// FETCH KE BACKEND (POST)
+// ============================================================
+function callBackend(action, args) {
+  return new Promise(function(resolve, reject) {
+    fetch(CONFIG.API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: action, args: args || [] }),
+      redirect: 'follow'
+    })
+    .then(function(response) { return response.json(); })
+    .then(function(data) { resolve(data); })
+    .catch(function(error) { reject(error); });
+  });
+}
+
+// ============================================================
+// LOAD UJIAN
+// ============================================================
+function loadUjianList() {
+  var select = document.getElementById('filterUjian');
+  select.innerHTML = '<option value="">⏳ Memuat ujian...</option>';
+
+  document.getElementById('statusBadge').textContent = '⏳ Memuat ujian...';
+  document.getElementById('statusBadge').className = 'status-badge';
+
+  callBackend('getAllCATUjian')
+    .then(function(list) {
+      list = Array.isArray(list) ? list : [];
+      ujianList = list;
+
+      select.innerHTML = '<option value="">📚 -- Pilih Ujian --</option>';
+
+      if (!list.length) {
+        select.innerHTML = '<option value="">📭 Belum ada ujian</option>';
+        document.getElementById('statusBadge').textContent = '⚠️ Belum ada ujian';
+        return;
       }
+
+      list.forEach(function(u) {
+        var o = document.createElement('option');
+        o.value = u.id;
+        var icon = String(u.status).toUpperCase() === 'AKTIF' ? '🟢' :
+                   String(u.status).toUpperCase() === 'TERJADWAL' ? '🟡' : '⚪';
+        o.textContent = icon + ' ' + u.mapel + ' - ' + u.kelas + ' (' + u.status + ')';
+        o.dataset.ujian = JSON.stringify(u);
+        select.appendChild(o);
+      });
+
+      // Auto-select ujian AKTIF pertama
+      var aktifIdx = -1;
+      for (var i = 1; i < select.options.length; i++) {
+        var u = JSON.parse(select.options[i].dataset.ujian || '{}');
+        if (String(u.status).toUpperCase() === 'AKTIF') { aktifIdx = i; break; }
+      }
+      if (aktifIdx === -1 && select.options.length > 1) aktifIdx = 1;
+
+      if (aktifIdx > 0) {
+        select.selectedIndex = aktifIdx;
+        applyFilter();
+      }
+
+      document.getElementById('statusBadge').textContent = '✅ ' + list.length + ' ujian';
+      document.getElementById('statusBadge').className = 'status-badge active';
+    })
+    .catch(function(error) {
+      console.error('Error loadUjianList:', error);
+      document.getElementById('statusBadge').textContent = '❌ Error koneksi';
+      document.getElementById('statusBadge').className = 'status-badge';
+      select.innerHTML = '<option value="">❌ Gagal memuat</option>';
     });
+}
 
-    // ============================================================
-    // INISIALISASI
-    // ============================================================
-    function initializeApp() {
-      loadUjianList();
-      startAutoRefresh();
-    }
+// ============================================================
+// APPLY FILTER
+// ============================================================
+function applyFilter() {
+  var select = document.getElementById('filterUjian');
+  var opt = select.options[select.selectedIndex];
 
-    // ============================================================
-    // AMBIL DATA DARI API (Google Apps Script)
-    // ============================================================
-    function fetchData(endpoint, params) {
-      return new Promise(function(resolve, reject) {
-        var url = CONFIG.API_URL + '?action=' + endpoint;
-        if (params) {
-          Object.keys(params).forEach(function(key) {
-            url += '&' + key + '=' + encodeURIComponent(params[key]);
-          });
-        }
-        
-        fetch(url)
-          .then(function(response) {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-          })
-          .then(function(data) {
-            resolve(data);
-          })
-          .catch(function(error) {
-            reject(error);
-          });
-      });
-    }
+  if (!opt || !opt.value) {
+    document.getElementById('infoUjian').textContent = '⚠️ Pilih ujian dulu';
+    showEmptyState('📭', 'Belum pilih ujian', 'Pilih ujian di dropdown atas.');
+    resetStats();
+    return;
+  }
 
-    // ============================================================
-    // LOAD UJIAN LIST
-    // ============================================================
-    function loadUjianList() {
-      var mapelSelect = document.getElementById('filterMapel');
-      mapelSelect.innerHTML = '<option value="semua">📚 SEMUA MAPEL</option>';
-      
-      // Tampilkan loading
-      document.getElementById('statusBadge').textContent = '⏳ Memuat ujian...';
-      document.getElementById('statusBadge').className = 'status-badge';
-      
-      fetchData('getUjianAktif')
-        .then(function(data) {
-          if (data && data.success && data.list) {
-            ujianList = data.list;
-            
-            var mapelSet = new Set();
-            ujianList.forEach(function(u) {
-              mapelSet.add(u.mapel);
-            });
-            
-            mapelSet.forEach(function(mapel) {
-              var opt = document.createElement('option');
-              opt.value = mapel;
-              opt.textContent = mapel;
-              mapelSelect.appendChild(opt);
-            });
-            
-            // Auto apply filter
-            applyFilter();
-            
-            document.getElementById('statusBadge').textContent = '✅ ' + ujianList.length + ' ujian aktif';
-            document.getElementById('statusBadge').className = 'status-badge active';
-          } else {
-            document.getElementById('statusBadge').textContent = '⚠️ Gagal memuat ujian';
-            document.getElementById('statusBadge').className = 'status-badge';
-          }
-        })
-        .catch(function(error) {
-          console.error('Error loadUjianList:', error);
-          document.getElementById('statusBadge').textContent = '❌ Error: ' + error.message;
-          document.getElementById('statusBadge').className = 'status-badge';
-        });
-    }
+  try { currentUjian = JSON.parse(opt.dataset.ujian || '{}'); }
+  catch (e) { currentUjian = null; }
 
-    // ============================================================
-    // APPLY FILTER
-    // ============================================================
-    function applyFilter() {
-      var mapel = document.getElementById('filterMapel').value;
-      var kelas = document.getElementById('filterKelas').value;
-      
-      // Cari ujian yang sesuai filter
-      var filtered = ujianList.filter(function(u) {
-        var matchMapel = mapel === 'semua' || u.mapel === mapel;
-        var matchKelas = kelas === 'semua' || u.kelas === kelas;
-        return matchMapel && matchKelas;
-      });
-      
-      if (filtered.length === 0) {
-        document.getElementById('infoUjian').textContent = '⚠️ Tidak ada ujian untuk filter ini';
-        showEmptyState('📭', 'Tidak ada ujian', 'Ubah filter untuk melihat ujian lain.');
-        updateStats(null);
-        return;
-      }
-      
-      // Gunakan ujian pertama yang ditemukan
-      var ujian = filtered[0];
-      document.getElementById('infoUjian').textContent = '📋 ' + ujian.mapel + ' - Kelas ' + ujian.kelas + ' (' + ujian.status + ')';
-      
-      loadMonitoringData(ujian.formId);
-    }
+  document.getElementById('infoUjian').textContent =
+    '📋 ' + (currentUjian.mapel || '-') + ' - Kelas ' + (currentUjian.kelas || '-') +
+    ' (' + (currentUjian.status || '-') + ')';
 
-    // ============================================================
-    // LOAD MONITORING DATA
-    // ============================================================
-    function loadMonitoringData(formId) {
-      if (!formId) return;
-      
-      document.getElementById('statusBadge').textContent = '⏳ Memuat data...';
-      document.getElementById('statusBadge').className = 'status-badge';
-      
-      fetchData('getMonitoring', { formId: formId })
-        .then(function(data) {
-          if (data && data.success) {
-            currentData = data;
-            renderData(data);
-            document.getElementById('statusBadge').textContent = '✅ Data terbaru';
-            document.getElementById('statusBadge').className = 'status-badge active';
-            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('id-ID');
-          } else {
-            document.getElementById('statusBadge').textContent = '⚠️ ' + (data ? data.message : 'Gagal memuat data');
-            document.getElementById('statusBadge').className = 'status-badge';
-            showEmptyState('❌', 'Gagal memuat data', data ? data.message : 'Coba refresh lagi.');
-          }
-        })
-        .catch(function(error) {
-          console.error('Error loadMonitoringData:', error);
-          document.getElementById('statusBadge').textContent = '❌ Error: ' + error.message;
-          document.getElementById('statusBadge').className = 'status-badge';
-          showEmptyState('❌', 'Error', error.message);
-        });
-    }
+  loadMonitoringData(opt.value);
+}
 
-    // ============================================================
-    // RENDER DATA
-    // ============================================================
-    function renderData(data) {
-      // Filter siswa yang sudah selesai
-      var siswaSelesai = (data.siswaList || []).filter(function(s) {
-        return s.status === 'selesai';
-      });
-      
-      var totalSiswa = data.totalSiswa || 0;
-      var totalSelesai = siswaSelesai.length;
-      var totalBelum = totalSiswa - totalSelesai;
-      var persentase = totalSiswa > 0 ? Math.round((totalSelesai / totalSiswa) * 100) : 0;
-      
-      var valid = data.valid || 0;
-      var tidakValid = data.tidakValid || 0;
-      
-      // ============================================================
-      // STATISTIK
-      // ============================================================
-      document.getElementById('statsGrid').innerHTML = 
-        '<div class="stat-card success"><div class="number">' + totalSelesai + '</div><div class="label">✅ Selesai</div></div>' +
-        '<div class="stat-card warning"><div class="number">' + totalBelum + '</div><div class="label">⏳ Belum</div></div>' +
-        '<div class="stat-card primary"><div class="number">' + totalSiswa + '</div><div class="label">📊 Total Siswa</div></div>' +
-        '<div class="stat-card primary"><div class="number">' + persentase + '%</div><div class="label">📈 Progres</div></div>' +
-        '<div class="stat-card success"><div class="number">' + valid + '</div><div class="label">✅ Valid</div></div>' +
-        '<div class="stat-card danger"><div class="number">' + tidakValid + '</div><div class="label">❌ Tidak Valid</div></div>';
-      
-      // ============================================================
-      // PROGRESS BAR
-      // ============================================================
-      document.getElementById('progressSelesai').style.width = persentase + '%';
-      document.getElementById('progressText').textContent = '🟢 Selesai: ' + persentase + '% (' + totalSelesai + ' dari ' + totalSiswa + ' siswa)';
-      
-      // ============================================================
-      // COUNT SELESAI
-      // ============================================================
-      document.getElementById('countSelesai').textContent = '(' + totalSelesai + ')';
-      
-      // ============================================================
-      // TABEL
-      // ============================================================
-      var wrapper = document.getElementById('tableWrapper');
-      
-      if (totalSelesai === 0) {
-        wrapper.innerHTML = 
-          '<div class="empty-state">' +
-            '<div class="icon">⏳</div>' +
-            '<h3>Belum ada siswa yang selesai</h3>' +
-            '<p>Siswa akan muncul di sini setelah mengirimkan jawaban.</p>' +
-          '</div>';
-        return;
-      }
-      
-      var html = '<table><thead><tr>';
-      html += '<th>No</th><th>No Tes</th><th>Nama</th><th>Status</th><th>Kelas</th><th>Waktu Submit</th>';
-      html += '</tr></thead><tbody>';
-      
-      siswaSelesai.forEach(function(s, i) {
-        var statusBadge = '';
-        if (s.validasi && s.validasi.indexOf('✅') !== -1) {
-          statusBadge = '<span class="status-badge-sm valid">✅ Valid</span>';
-        } else if (s.validasi && s.validasi.indexOf('❌') !== -1) {
-          statusBadge = '<span class="status-badge-sm invalid">❌ Tidak Terdaftar</span>';
-        } else {
-          statusBadge = '<span class="status-badge-sm valid">✅ Valid</span>';
-        }
-        
-        var namaTampil = s.namaForm || s.nama || '-';
-        var kelasTampil = s.kelas || '-';
-        var waktuTampil = s.waktu ? formatWaktu(s.waktu) : '-';
-        
-        html += '<tr>';
-        html += '<td>' + (i + 1) + '</td>';
-        html += '<td><strong>' + escapeHtml(s.noTes) + '</strong></td>';
-        html += '<td>' + escapeHtml(namaTampil) + '</td>';
-        html += '<td>' + statusBadge + '</td>';
-        html += '<td>' + escapeHtml(kelasTampil) + '</td>';
-        html += '<td style="font-size:12px;color:#888;">' + escapeHtml(waktuTampil) + '</td>';
-        html += '</tr>';
-      });
-      
-      html += '</tbody></table>';
-      wrapper.innerHTML = html;
-    }
+// ============================================================
+// LOAD MONITORING DATA
+// ============================================================
+function loadMonitoringData(idUjian) {
+  if (!idUjian) return;
 
-    // ============================================================
-    // FUNGSI BANTU
-    // ============================================================
-    function escapeHtml(value) {
-      if (!value) return '';
-      var div = document.createElement('div');
-      div.textContent = String(value);
-      return div.innerHTML;
-    }
-    
-    function formatWaktu(waktu) {
-      if (!waktu) return '-';
-      if (waktu.length >= 16) {
-        return waktu.substring(11, 16);
-      }
-      return waktu;
-    }
-    
-    function showEmptyState(icon, title, desc) {
-      var wrapper = document.getElementById('tableWrapper');
-      wrapper.innerHTML = 
-        '<div class="empty-state">' +
-          '<div class="icon">' + icon + '</div>' +
-          '<h3>' + title + '</h3>' +
-          '<p>' + (desc || '') + '</p>' +
-        '</div>';
-    }
-    
-    function updateStats(data) {
-      // Reset stats
-      document.getElementById('statsGrid').innerHTML = 
-        '<div class="stat-card success"><div class="number">-</div><div class="label">✅ Selesai</div></div>' +
-        '<div class="stat-card warning"><div class="number">-</div><div class="label">⏳ Belum</div></div>' +
-        '<div class="stat-card primary"><div class="number">-</div><div class="label">📊 Total Siswa</div></div>' +
-        '<div class="stat-card primary"><div class="number">-</div><div class="label">📈 Progres</div></div>' +
-        '<div class="stat-card success"><div class="number">-</div><div class="label">✅ Valid</div></div>' +
-        '<div class="stat-card danger"><div class="number">-</div><div class="label">❌ Tidak Valid</div></div>';
-      
-      document.getElementById('progressSelesai').style.width = '0%';
-      document.getElementById('progressText').textContent = '🟢 Selesai: 0%';
-      document.getElementById('countSelesai').textContent = '(0)';
-    }
+  document.getElementById('statusBadge').innerHTML = '<span class="loading"></span>Memuat data...';
+  document.getElementById('statusBadge').className = 'status-badge';
 
-    // ============================================================
-    // AUTO REFRESH
-    // ============================================================
-    function startAutoRefresh() {
-      stopAutoRefresh();
-      countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-      updateCountdownDisplay();
-      
-      autoRefreshTimer = setInterval(function() {
-        countdownValue--;
-        updateCountdownDisplay();
-        
-        if (countdownValue <= 0) {
-          countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-          if (isAutoRefresh) {
-            refreshData();
-          }
-          updateCountdownDisplay();
-        }
-      }, 1000);
-    }
-    
-    function stopAutoRefresh() {
-      if (autoRefreshTimer) {
-        clearInterval(autoRefreshTimer);
-        autoRefreshTimer = null;
-      }
-    }
-    
-    function toggleAutoRefresh() {
-      isAutoRefresh = !isAutoRefresh;
-      var btn = document.getElementById('btnAutoToggle');
-      if (isAutoRefresh) {
-        btn.textContent = '⏸️ Pause';
-        btn.className = 'btn btn-outline btn-sm';
-        countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-        updateCountdownDisplay();
+  callBackend('getMonitoringPengawas', [idUjian])
+    .then(function(result) {
+      if (result && result.success) {
+        currentData = result;
+        renderData(result);
+        document.getElementById('statusBadge').textContent = '✅ Data terbaru';
+        document.getElementById('statusBadge').className = 'status-badge active';
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('id-ID');
       } else {
-        btn.textContent = '▶️ Lanjut';
-        btn.className = 'btn btn-success btn-sm';
-        document.getElementById('countdown').textContent = '⏸️';
+        document.getElementById('statusBadge').textContent = '⚠️ ' + (result ? result.message : 'Gagal');
+        showEmptyState('❌', 'Gagal memuat data', result ? result.message : '');
       }
-    }
-    
-    function updateCountdownDisplay() {
-      var el = document.getElementById('countdown');
-      if (isAutoRefresh) {
-        el.textContent = countdownValue;
-      } else {
-        el.textContent = '⏸️';
-      }
-    }
-    
-    function refreshManual() {
-      var btn = document.getElementById('btnRefresh');
-      btn.textContent = '⏳ Memuat...';
-      btn.disabled = true;
-      
-      // Reset countdown
+    })
+    .catch(function(error) {
+      console.error('Error loadMonitoringData:', error);
+      document.getElementById('statusBadge').textContent = '❌ Error koneksi';
+      showEmptyState('❌', 'Error', error.message);
+    });
+}
+
+// ============================================================
+// RENDER DATA
+// ============================================================
+function renderData(data) {
+  var total = data.totalSiswa || 0;
+  var selesai = data.selesai || 0;
+  var mengerjakan = data.mengerjakan || 0;
+  var login = data.login || 0;
+  var belum = data.belumLogin || 0;
+  var persen = total > 0 ? Math.round((selesai / total) * 100) : 0;
+
+  document.getElementById('statsGrid').innerHTML =
+    '<div class="stat-card primary"><div class="number">' + total + '</div><div class="label">📊 Total Siswa</div></div>' +
+    '<div class="stat-card success"><div class="number">' + selesai + '</div><div class="label">🔵 Selesai</div></div>' +
+    '<div class="stat-card warning"><div class="number">' + mengerjakan + '</div><div class="label">🟡 Mengerjakan</div></div>' +
+    '<div class="stat-card success"><div class="number">' + login + '</div><div class="label">🟢 Login</div></div>' +
+    '<div class="stat-card danger"><div class="number">' + belum + '</div><div class="label">⚪ Belum Login</div></div>' +
+    '<div class="stat-card primary"><div class="number">' + persen + '%</div><div class="label">📈 Progres</div></div>';
+
+  document.getElementById('progressBar').style.width = persen + '%';
+  document.getElementById('progressText').textContent = '🟢 Selesai: ' + persen + '% (' + selesai + ' dari ' + total + ' siswa)';
+
+  var list = data.siswaList || [];
+  document.getElementById('countSiswa').textContent = '(' + list.length + ')';
+
+  var wrapper = document.getElementById('tableWrapper');
+
+  if (!list.length) {
+    showEmptyState('📭', 'Belum ada siswa', 'Siswa akan muncul setelah login.');
+    return;
+  }
+
+  var html = '<table><thead><tr>';
+  html += '<th>No</th><th>No Tes</th><th>Nama</th><th>Kelas</th><th>Progress</th><th>Nilai</th><th>Status</th><th>Waktu</th>';
+  html += '</tr></thead><tbody>';
+
+  list.forEach(function(s, i) {
+    var statusClass = s.status === 'SELESAI' ? 'selesai' :
+                      s.status === 'MENGERJAKAN' ? 'mengerjakan' :
+                      s.status === 'LOGIN' ? 'login' : 'belum';
+
+    var statusText = s.status === 'SELESAI' ? '🔵 Selesai' :
+                     s.status === 'MENGERJAKAN' ? '🟡 Mengerjakan' :
+                     s.status === 'LOGIN' ? '🟢 Login' : '⚪ Belum Login';
+
+    var progress = (s.jumlahDijawab || 0) + '/' + (data.ujian.jumlahSoal || 0);
+    var nilaiDisplay = s.status === 'SELESAI' ? s.nilai : '-';
+
+    html += '<tr>';
+    html += '<td>' + (i + 1) + '</td>';
+    html += '<td><strong>' + escapeHtml(s.noTes) + '</strong></td>';
+    html += '<td>' + escapeHtml(s.nama) + '</td>';
+    html += '<td>' + escapeHtml(s.kelas) + '</td>';
+    html += '<td style="font-size:12px;color:#666;">' + progress + '</td>';
+    html += '<td style="font-weight:700;color:#1a237e;">' + nilaiDisplay + '</td>';
+    html += '<td><span class="status-badge-sm ' + statusClass + '">' + statusText + '</span></td>';
+    html += '<td style="font-size:11px;color:#888;">' + escapeHtml(s.waktu || '-') + '</td>';
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  wrapper.innerHTML = html;
+}
+
+function resetStats() {
+  document.getElementById('statsGrid').innerHTML =
+    '<div class="stat-card primary"><div class="number">-</div><div class="label">📊 Total</div></div>' +
+    '<div class="stat-card success"><div class="number">-</div><div class="label">🔵 Selesai</div></div>' +
+    '<div class="stat-card warning"><div class="number">-</div><div class="label">🟡 Mengerjakan</div></div>' +
+    '<div class="stat-card success"><div class="number">-</div><div class="label">🟢 Login</div></div>' +
+    '<div class="stat-card danger"><div class="number">-</div><div class="label">⚪ Belum</div></div>' +
+    '<div class="stat-card primary"><div class="number">-</div><div class="label">📈 Progres</div></div>';
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('progressText').textContent = '🟢 Selesai: 0%';
+  document.getElementById('countSiswa').textContent = '(0)';
+}
+
+function showEmptyState(icon, title, desc) {
+  var wrapper = document.getElementById('tableWrapper');
+  wrapper.innerHTML = '<div class="empty-state">' +
+    '<div class="icon">' + icon + '</div>' +
+    '<h3>' + title + '</h3>' +
+    '<p>' + (desc || '') + '</p>' +
+    '</div>';
+}
+
+function escapeHtml(value) {
+  if (value === undefined || value === null) return '';
+  var div = document.createElement('div');
+  div.textContent = String(value);
+  return div.innerHTML;
+}
+
+// ============================================================
+// AUTO REFRESH
+// ============================================================
+function startAutoRefresh() {
+  stopAutoRefresh();
+  countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
+  updateCountdownDisplay();
+
+  autoRefreshTimer = setInterval(function() {
+    if (!isAutoRefresh) return;
+    countdownValue--;
+    updateCountdownDisplay();
+
+    if (countdownValue <= 0) {
       countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
-      updateCountdownDisplay();
-      
-      refreshData()
-        .then(function() {
-          btn.textContent = '✅ Berhasil!';
-          setTimeout(function() {
-            btn.textContent = '🔄 Refresh';
-            btn.disabled = false;
-          }, 1500);
-        })
-        .catch(function() {
-          btn.textContent = '❌ Gagal!';
-          setTimeout(function() {
-            btn.textContent = '🔄 Refresh';
-            btn.disabled = false;
-          }, 1500);
-        });
+      refreshData();
     }
-    
-    function refreshData() {
-      return new Promise(function(resolve, reject) {
-        var mapel = document.getElementById('filterMapel').value;
-        var kelas = document.getElementById('filterKelas').value;
-        
-        var filtered = ujianList.filter(function(u) {
-          var matchMapel = mapel === 'semua' || u.mapel === mapel;
-          var matchKelas = kelas === 'semua' || u.kelas === kelas;
-          return matchMapel && matchKelas;
-        });
-        
-        if (filtered.length === 0) {
-          resolve();
-          return;
-        }
-        
-        var ujian = filtered[0];
-        loadMonitoringData(ujian.formId);
-        resolve();
-      });
-    }
+  }, 1000);
+}
 
-    // ============================================================
-    // PENGATURAN FILTER
-    // ============================================================
-    document.getElementById('filterMapel').addEventListener('change', applyFilter);
-    document.getElementById('filterKelas').addEventListener('change', applyFilter);
+function stopAutoRefresh() {
+  if (autoRefreshTimer) {
+    clearInterval(autoRefreshTimer);
+    autoRefreshTimer = null;
+  }
+}
 
-    // ============================================================
-    // JALANKAN APLIKASI (Setelah login)
-    // ============================================================
-    console.log('🚀 CBT Pengawas Ruang siap!');
-  </script>
+function toggleAutoRefresh() {
+  isAutoRefresh = !isAutoRefresh;
+  var btn = document.getElementById('btnAutoToggle');
+  if (isAutoRefresh) {
+    btn.textContent = '⏸️ Pause';
+    btn.className = 'btn btn-outline btn-sm';
+    countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
+  } else {
+    btn.textContent = '▶️ Lanjut';
+    btn.className = 'btn btn-success btn-sm';
+    document.getElementById('countdown').textContent = '⏸️';
+  }
+  updateCountdownDisplay();
+}
 
+function updateCountdownDisplay() {
+  var el = document.getElementById('countdown');
+  if (!el) return;
+  el.textContent = isAutoRefresh ? countdownValue : '⏸️';
+}
+
+function refreshManual() {
+  var btn = document.getElementById('btnRefresh');
+  btn.textContent = '⏳ Memuat...';
+  btn.disabled = true;
+
+  countdownValue = CONFIG.AUTO_REFRESH_INTERVAL;
+  updateCountdownDisplay();
+
+  var select = document.getElementById('filterUjian');
+  if (select.value) {
+    loadMonitoringData(select.value);
+  } else {
+    loadUjianList();
+  }
+
+  setTimeout(function() {
+    btn.textContent = '🔄 Refresh';
+    btn.disabled = false;
+  }, 1500);
+}
+
+function refreshData() {
+  var select = document.getElementById('filterUjian');
+  if (select && select.value) {
+    loadMonitoringData(select.value);
+  }
+}
+
+// ============================================================
+// JALANKAN
+// ============================================================
+console.log('🚀 CBT Pengawas Ruang - MAS Ash Shidiqi');
+</script>
 </body>
 </html>
